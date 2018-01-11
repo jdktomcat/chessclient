@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="50dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom|center_horizontal" >
+
+        <Button
+            android:id="@+id/signBtnLastPic"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_last_pic" />
+
+        <ImageView
+            android:id="@+id/signHead"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/head1" />
+
+        <Button
+            android:id="@+id/signBtnNextPic"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_next_pic" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/signEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/text_user_name"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/signEditPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/text_pwd"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/signEditRepassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/text_repassword"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/signBtnSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/sign_text" />
+
+        <Button
+            android:id="@+id/signBtnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/text_back" />
+    </LinearLayout>
+
+</LinearLayout>

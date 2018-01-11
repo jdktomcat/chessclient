@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="#ff6699ff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/editMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnSendMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/text_send" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollMsg"
+        android:layout_width="300dp"
+        android:layout_height="300dp" >
+
+        <TextView
+            android:id="@+id/textMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ff000000"
+            android:textSize="8pt" />
+    </ScrollView>
+
+</LinearLayout>

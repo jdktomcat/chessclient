@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">中国象棋</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="login_text">登陆</string>
+    <string name="sign_text">注册</string>
+    <string name="text_user_name">用户名</string>
+    <string name="text_pwd">密码</string>
+    <string name="text_findgame">匹配游戏</string>
+    <string name="text_logout">注销</string>
+    <string name="text_back">返回</string>
+    <string name="text_repassword">重复密码</string>
+    <string name="text_head">头像</string>
+    <string name="text_next_pic">下一张</string>
+    <string name="text_last_pic">上一张</string>
+    <string name="text_name">名字:</string>
+    <string name="text_score">分数:</string>
+    <string name="text_vicount">胜利场数:</string>
+    <string name="text_decount">失败场数:</string>
+    <string name="text_drcount">和棋场数:</string>
+    <string name="text_rollback">悔棋</string>
+    <string name="text_askpeace">求和</string>
+    <string name="text_giveup">认输</string>
+    <string name="text_send">发送</string>
+</resources>
