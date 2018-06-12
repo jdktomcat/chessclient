@@ -1,4 +1,4 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 public class Walk {
 	public int x1, x2, y1, y2;

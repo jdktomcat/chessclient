@@ -1,4 +1,4 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.View.OnTouchListener;
+
+import com.game.chess.util.GameUtil;
 
 public class GameView extends MyView implements OnTouchListener {
 	public interface GameViewListener {

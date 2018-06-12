@@ -1,4 +1,4 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 
 import android.content.Context;

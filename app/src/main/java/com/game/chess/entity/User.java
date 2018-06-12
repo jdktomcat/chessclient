@@ -1,4 +1,4 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 import java.io.BufferedReader;
 import java.io.File;

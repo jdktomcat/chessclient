@@ -1,7 +1,9 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+
+import com.game.chess.R;
 
 public class Mp3 {
     public static MediaPlayer bgm;

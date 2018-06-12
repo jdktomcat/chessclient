@@ -1,8 +1,10 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.game.chess.R;
 
 public class Img {
     // 背景

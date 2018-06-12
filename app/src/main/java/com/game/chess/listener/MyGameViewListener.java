@@ -1,8 +1,8 @@
 package com.game.chess.listener;
 
-import com.game.chess.GameView;
-import com.game.chess.Mp3;
-import com.game.chess.Walk;
+import com.game.chess.entity.GameView;
+import com.game.chess.entity.Mp3;
+import com.game.chess.entity.Walk;
 import com.game.chess.activity.MainActivity;
 
 /**

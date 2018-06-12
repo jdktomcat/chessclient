@@ -1,4 +1,6 @@
-package com.game.chess;
+package com.game.chess.util;
+
+import com.game.chess.entity.Walk;
 
 public class GameUtil {
 	public static final int CHE = 7, MA = 5, XIANG = 2, SHI = 1, JIANG = 4,

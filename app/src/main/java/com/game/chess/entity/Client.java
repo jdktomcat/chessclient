@@ -1,4 +1,4 @@
-package com.game.chess;
+package com.game.chess.entity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 
 import android.os.Handler;
 import android.os.Message;
+
+import com.game.chess.util.GameUtil;
 
 public class Client implements Runnable {
     public Handler clientHandler = new Handler() {

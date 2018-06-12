@@ -1,4 +1,6 @@
-package com.game.chess;
+package com.game.chess.entity;
+
+import com.game.chess.util.GameUtil;
 
 import java.util.ArrayList;
 

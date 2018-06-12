@@ -3,9 +3,9 @@ package com.game.chess.listener;
 import android.view.View;
 import android.widget.Button;
 
-import com.game.chess.Img;
-import com.game.chess.Mp3;
-import com.game.chess.User;
+import com.game.chess.entity.Img;
+import com.game.chess.entity.Mp3;
+import com.game.chess.entity.User;
 import com.game.chess.activity.MainActivity;
 
 public class MyClickListener implements View.OnClickListener {

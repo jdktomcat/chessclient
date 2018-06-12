@@ -1,9 +1,9 @@
 package com.game.chess.listener;
 
-import com.game.chess.ChatMessage;
-import com.game.chess.Client;
-import com.game.chess.Mp3;
-import com.game.chess.User;
+import com.game.chess.entity.ChatMessage;
+import com.game.chess.entity.Client;
+import com.game.chess.entity.Mp3;
+import com.game.chess.entity.User;
 import com.game.chess.activity.MainActivity;
 
 /**
