@@ -32,15 +32,54 @@ import com.game.chess.listener.MyGameViewListener;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
+    /**
+     * 游戏界面
+     */
+    public static final int GAME_VIEW = 1;
+
+    /**
+     * 登录界面
+     */
+    public static final int LOGIN_VIEW = 2;
+
+    /**
+     * 注册界面
+     */
+    public static final int SIGN_VIEW = 3;
+
+    /**
+     * 菜单界面
+     */
+    public static final int MENU_VIEW = 4;
+
+    /**
+     * 开始界面
+     */
+    public static final int START_VIEW = 5;
 
     /**
      * 消息列表
      */
     private ArrayList<ChatMessage> chatMessages = new ArrayList<>();
 
+    /**
+     * 客户端
+     */
     private Client client;
+
+    /**
+     * 游戏界面
+     */
     private GameView gameView;
+
+    /**
+     * 本地用户
+     */
     private User localUser;
+
+    /**
+     * 提示处理器
+     */
     private Handler toastHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -48,11 +87,7 @@ public class MainActivity extends Activity {
             Toast.makeText(MainActivity.this, msg.obj.toString(), Toast.LENGTH_LONG).show();
         }
     };
-    public static final int GAME_VIEW = 1;
-    public static final int LOGIN_VIEW = 2;
-    public static final int SIGN_VIEW = 3;
-    public static final int MENU_VIEW = 4;
-    public static final int START_VIEW = 5;
+
 
     private int thisView;
 
