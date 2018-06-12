@@ -271,7 +271,7 @@ public class MainActivity extends Activity {
     /**
      * 游戏界面监听
      *
-     * @author LiYuanMing
+     * @author 汤旗
      */
     class MyGameViewListener implements GameViewListener {
 
@@ -397,8 +397,6 @@ public class MainActivity extends Activity {
             client = new Client("10.101.17.51", 9898, myClientListener);
             client.connect();
         }
-
-        ;
     };
 
     @Override
