@@ -18,7 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chinachess.R;
+import com.game.chess.R;
 
 import com.game.chess.ChatMessage;
 import com.game.chess.Client;
