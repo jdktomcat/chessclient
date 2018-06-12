@@ -1,4 +1,4 @@
-package com.xmg.chinachess.activity;
+package com.game.chess.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -20,15 +20,15 @@ import android.widget.Toast;
 
 import com.example.chinachess.R;
 
-import com.xmg.chinachess.ChatMessage;
-import com.xmg.chinachess.Client;
-import com.xmg.chinachess.Client.ClientListener;
-import com.xmg.chinachess.GameView;
-import com.xmg.chinachess.GameView.GameViewListener;
-import com.xmg.chinachess.Img;
-import com.xmg.chinachess.Mp3;
-import com.xmg.chinachess.User;
-import com.xmg.chinachess.Walk;
+import com.game.chess.ChatMessage;
+import com.game.chess.Client;
+import com.game.chess.Client.ClientListener;
+import com.game.chess.GameView;
+import com.game.chess.GameView.GameViewListener;
+import com.game.chess.Img;
+import com.game.chess.Mp3;
+import com.game.chess.User;
+import com.game.chess.Walk;
 
 import java.util.ArrayList;
 

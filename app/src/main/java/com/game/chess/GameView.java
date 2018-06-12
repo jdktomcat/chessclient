@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 import android.content.Context;
 import android.graphics.Bitmap;

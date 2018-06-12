@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 import com.example.chinachess.R;
 

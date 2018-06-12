@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 import java.io.BufferedReader;
 import java.io.IOException;

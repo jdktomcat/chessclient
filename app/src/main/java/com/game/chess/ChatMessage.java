@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

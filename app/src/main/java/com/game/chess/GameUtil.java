@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 public class GameUtil {
 	public static final int CHE = 7, MA = 5, XIANG = 2, SHI = 1, JIANG = 4,

@@ -1,4 +1,4 @@
-package com.xmg.chinachess;
+package com.game.chess;
 
 public class Walk {
 	public int x1, x2, y1, y2;
