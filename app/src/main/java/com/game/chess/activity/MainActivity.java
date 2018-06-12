@@ -18,284 +18,25 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.game.chess.R;
-
 import com.game.chess.ChatMessage;
 import com.game.chess.Client;
-import com.game.chess.Client.ClientListener;
 import com.game.chess.GameView;
-import com.game.chess.GameView.GameViewListener;
 import com.game.chess.Img;
 import com.game.chess.Mp3;
+import com.game.chess.R;
 import com.game.chess.User;
-import com.game.chess.Walk;
+import com.game.chess.listener.MyClickListener;
+import com.game.chess.listener.MyClientListener;
+import com.game.chess.listener.MyGameViewListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
-    private ArrayList<ChatMessage> chatMessages = new ArrayList<ChatMessage>();
-
-    class MyClickListener implements OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Mp3.select.start();
-            if (v == loginBtnLogin) {
-                String name = loginEditName.getText().toString();
-                String pwd = loginEditPassword.getText().toString();
-                localUser = new User();
-                localUser.setName(name);
-                localUser.setPassword(pwd);
-                client.setUser(localUser);
-                client.login();
-                loginBtnLogin.setEnabled(false);
-                loginBtnSign.setEnabled(false);
-            } else if (v == loginBtnSign) {
-                signView();
-            } else if (v == btnFindGame) {
-                if (isFindding) {
-                    client.cancleFind();
-                    btnFindGame.setText("匹配游戏");
-                    isFindding = false;
-                } else {
-                    client.findGame();
-                    btnFindGame.setText("取消匹配");
-                    isFindding = true;
-                }
-            } else if (v == signBtnSign) {
-                String name = signEditName.getText().toString();
-                String password = signEditPassword.getText().toString();
-                String repassword = signEditRepassword.getText().toString();
-                if ("".equals(name)) {
-                    toastMsg("名字不能为空！");
-                    return;
-                }
-                if ("".equals(password)) {
-                    toastMsg("密码不能为空！");
-                    return;
-                }
-                if (!password.equals(repassword)) {
-                    toastMsg("密码和重复密码不一致！");
-                    return;
-                }
-                localUser = new User(name, password, headPic + "");
-                client.setUser(localUser);
-                signBtnSign.setEnabled(false);
-                signBtnBack.setEnabled(false);
-                client.sign();
-            } else if (v == signBtnBack) {
-                loginView();
-            }
-            if (((Button) v).getText().toString().equals("上一张")) {
-                headPic--;
-                if (headPic < 1) {
-                    headPic = 14;
-                }
-                signHead.setImageBitmap(Img.getHead(headPic));
-            } else if (((Button) v).getText().toString().equals("下一张")) {
-                headPic++;
-                if (headPic > 14) {
-                    headPic = 1;
-                }
-                signHead.setImageBitmap(Img.getHead(headPic));
-
-            } else if (((Button) v).getText().toString().equals("注销")) {
-                User.removeLocalUser();
-                client.close();
-                loginView();
-            }
-        }
-    }
 
     /**
-     * 客户端事件监听
-     *
-     * @author LiYuanMing
+     * 消息列表
      */
-    class MyClientListener implements ClientListener {
-
-        @Override
-        public void onAskPeace() {
-            askPeaceDialog();
-        }
-
-        @Override
-        public void onAskRollback() {
-            askRollbackDialog();
-        }
-
-        @Override
-        public void onConnect() {
-            localUser = User.getLocalUser();
-            if (localUser != null) {
-                client.setUser(localUser);
-                client.login();
-            } else {
-                loginView();
-            }
-        }
-
-        @Override
-        public void onConnectFailed() {
-            toastMsg("网络连接失败！请检查网络设置后重新启动。");
-        }
-
-        @Override
-        public void onDeLine() {
-            // 显示窗口
-            client.connect();
-        }
-
-        @Override
-        public void onFailed(String msg) {
-            // 显示窗口
-            toastMsg(msg);
-        }
-
-        @Override
-        public void onGameOver(int win, String string) {
-            localUser = User.getLocalUser();
-            if (win == 0) {
-                toastMsg("和棋" + string);
-                localUser.draw();
-            } else if (win == 1) {
-                if (client.getGame().getUser1().equals(localUser)) {
-                    toastMsg("恭喜你赢了！" + string);
-                    localUser.win();
-                    Mp3.gamewin.start();
-                } else {
-                    toastMsg("很遗憾你输了！" + string);
-                    localUser.defeat();
-                    Mp3.gamelose.start();
-                }
-            } else if (win == 2) {
-                if (client.getGame().getUser2().equals(localUser)) {
-                    toastMsg("恭喜你赢了！" + string);
-                    localUser.win();
-                    Mp3.gamewin.start();
-                } else {
-                    toastMsg("很遗憾你输了！" + string);
-                    localUser.defeat();
-                    Mp3.gamelose.start();
-                }
-            }
-            User.saveLocalUser(localUser);
-            menuView();
-        }
-
-        @Override
-        public void onLoginFailed() {
-            loginView();
-            toastMsg("登陆失败.");
-        }
-
-        @Override
-        public void onLoginSuccess() {
-            client.getUser().setPassword(localUser.getPassword());
-            localUser = client.getUser();
-            User.saveLocalUser(localUser);
-            menuView();
-        }
-
-        @Override
-        public void onReceiveMsg(String content) {
-            ChatMessage cm = ChatMessage.fromString(content);
-            chatMessages.add(cm);
-            if (chatDialog != null) {
-                if (chatDialog.isShowing()) {
-                    Mp3.dingdong.start();
-                    showChat();
-                } else {
-                    if (!cm.getFrom().equals(localUser.getName())) {
-                        toastMsg(cm.getFrom() + "说:" + cm.getContent());
-                        Mp3.receivemsg.start();
-                    }
-                }
-            } else {
-                if (!cm.getFrom().equals(localUser.getName())) {
-                    toastMsg(cm.getFrom() + "说:" + cm.getContent());
-                    Mp3.receivemsg.start();
-                }
-            }
-        }
-
-        @Override
-        public void onSignFailed() {
-            signView();
-            toastMsg("注册失败.");
-        }
-
-        @Override
-        public void onStart() {
-            gameView();
-
-        }
-
-        @Override
-        public void onUpdate() {
-            // 设置是否可以控制棋盘
-            if (gameView != null) {
-                int step = client.getGame().getStep();
-                if (client.isBlack()) {
-                    if (step % 2 == 0) {
-                        gameView.setCanSelect(false);
-                    } else {
-                        gameView.setCanSelect(true);
-                    }
-                } else {
-                    if (step % 2 == 0) {
-                        gameView.setCanSelect(true);
-                    } else {
-                        gameView.setCanSelect(false);
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void onEat() {
-            if (client.getGame().getStep() > 0) {
-                Mp3.eat.start();
-            }
-        }
-
-        @Override
-        public void onMove() {
-            if (client.getGame().getStep() > 0) {
-                Mp3.go.start();
-            }
-        }
-
-    }
-
-    /**
-     * 游戏界面监听
-     *
-     * @author 汤旗
-     */
-    class MyGameViewListener implements GameViewListener {
-
-        @Override
-        public void walk(Walk walk) {
-            client.walk(walk);
-        }
-
-        @Override
-        public void onSelect() {
-            Mp3.select.start();
-        }
-
-        @Override
-        public void onClickBtnChat() {
-            chatDialog();
-        }
-
-        @Override
-        public void onClickBtnMenu() {
-            menuDialog();
-        }
-
-    }
+    private ArrayList<ChatMessage> chatMessages = new ArrayList<>();
 
     private Client client;
     private GameView gameView;
@@ -333,8 +74,8 @@ public class MainActivity extends Activity {
 
     private Button btnFindGame, btnLogout;
 
-    private TextView textName, textScore, textVicount, textDecount,
-            textDrcount;
+    private TextView textName, textScore, textVicount, textDecount, textDrcount;
+
     private ImageView menuHead;
 
     public void gameView() {
@@ -365,17 +106,14 @@ public class MainActivity extends Activity {
     }
 
     public void menuView() {
-        // localUser = client.getUser();
         isFindding = false;
         if (thisView != MENU_VIEW) {
             thisView = MENU_VIEW;
             setContentView(R.layout.menu_view);
             btnFindGame = (Button) findViewById(R.id.btnFindGame);
             btnFindGame.setOnClickListener(myClickListener);
-
             btnLogout = (Button) findViewById(R.id.btnLogout);
             btnLogout.setOnClickListener(myClickListener);
-
             textName = (TextView) findViewById(R.id.textName);
             textScore = (TextView) findViewById(R.id.textScore);
             textVicount = (TextView) findViewById(R.id.textVicount);
@@ -406,9 +144,9 @@ public class MainActivity extends Activity {
         Mp3.init(this);
         Img.init(this);
         Mp3.bgm.start();
-        myClickListener = new MyClickListener();
-        myGameViewListener = new MyGameViewListener();
-        myClientListener = new MyClientListener();
+        myClickListener = new MyClickListener(this);
+        myGameViewListener = new MyGameViewListener(this);
+        myClientListener = new MyClientListener(this);
         new Thread(new Runnable() {
             public void run() {
                 // 延时3秒展现启动画面
@@ -481,7 +219,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.start_view);
     }
 
-    private void toastMsg(String content) {
+    public void toastMsg(String content) {
         Message msg = new Message();
         msg.obj = content;
         toastHandler.sendMessage(msg);
@@ -493,7 +231,7 @@ public class MainActivity extends Activity {
     private EditText editMsg;
     private TextView textMsg;
 
-    public String getChatMsgs() {
+    public String getChatMsg() {
         String msgs = "";
         if (chatMessages != null) {
             for (ChatMessage cm : chatMessages) {
@@ -505,8 +243,8 @@ public class MainActivity extends Activity {
         return msgs;
     }
 
-    private void showChat() {
-        textMsg.setText(getChatMsgs());
+    public void showChat() {
+        textMsg.setText(getChatMsg());
         scrollMsg.post(new Runnable() {
 
             @Override
@@ -658,22 +396,363 @@ public class MainActivity extends Activity {
                             "同意",
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface arg0,
-                                                    int arg1) {
+                                public void onClick(DialogInterface arg0, int arg1) {
                                     askRollbackDialog.dismiss();
                                     client.agreeRollBack();
                                 }
                             })
                     .setNegativeButton("不同意",
                             new DialogInterface.OnClickListener() {
-
                                 @Override
-                                public void onClick(DialogInterface arg0,
-                                                    int arg1) {
+                                public void onClick(DialogInterface arg0, int arg1) {
                                     askRollbackDialog.dismiss();
                                 }
                             }).create();
         }
         askRollbackDialog.show();
+    }
+
+    public int getThisView() {
+        return thisView;
+    }
+
+    public void setThisView(int thisView) {
+        this.thisView = thisView;
+    }
+
+    public EditText getLoginEditName() {
+        return loginEditName;
+    }
+
+    public void setLoginEditName(EditText loginEditName) {
+        this.loginEditName = loginEditName;
+    }
+
+    public EditText getLoginEditPassword() {
+        return loginEditPassword;
+    }
+
+    public void setLoginEditPassword(EditText loginEditPassword) {
+        this.loginEditPassword = loginEditPassword;
+    }
+
+    public Button getLoginBtnLogin() {
+        return loginBtnLogin;
+    }
+
+    public void setLoginBtnLogin(Button loginBtnLogin) {
+        this.loginBtnLogin = loginBtnLogin;
+    }
+
+    public Button getLoginBtnSign() {
+        return loginBtnSign;
+    }
+
+    public void setLoginBtnSign(Button loginBtnSign) {
+        this.loginBtnSign = loginBtnSign;
+    }
+
+    public MyClickListener getMyClickListener() {
+        return myClickListener;
+    }
+
+    public void setMyClickListener(MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
+    }
+
+    public MyGameViewListener getMyGameViewListener() {
+        return myGameViewListener;
+    }
+
+    public void setMyGameViewListener(MyGameViewListener myGameViewListener) {
+        this.myGameViewListener = myGameViewListener;
+    }
+
+    public boolean isFindding() {
+        return isFindding;
+    }
+
+    public void setFindding(boolean findding) {
+        isFindding = findding;
+    }
+
+    public int getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(int headPic) {
+        this.headPic = headPic;
+    }
+
+    public ImageView getSignHead() {
+        return signHead;
+    }
+
+    public void setSignHead(ImageView signHead) {
+        this.signHead = signHead;
+    }
+
+    public Button getSignBtnLastPic() {
+        return signBtnLastPic;
+    }
+
+    public void setSignBtnLastPic(Button signBtnLastPic) {
+        this.signBtnLastPic = signBtnLastPic;
+    }
+
+    public Button getSignBtnNextPic() {
+        return signBtnNextPic;
+    }
+
+    public void setSignBtnNextPic(Button signBtnNextPic) {
+        this.signBtnNextPic = signBtnNextPic;
+    }
+
+    public Button getSignBtnSign() {
+        return signBtnSign;
+    }
+
+    public void setSignBtnSign(Button signBtnSign) {
+        this.signBtnSign = signBtnSign;
+    }
+
+    public Button getSignBtnBack() {
+        return signBtnBack;
+    }
+
+    public void setSignBtnBack(Button signBtnBack) {
+        this.signBtnBack = signBtnBack;
+    }
+
+    public EditText getSignEditName() {
+        return signEditName;
+    }
+
+    public void setSignEditName(EditText signEditName) {
+        this.signEditName = signEditName;
+    }
+
+    public EditText getSignEditPassword() {
+        return signEditPassword;
+    }
+
+    public void setSignEditPassword(EditText signEditPassword) {
+        this.signEditPassword = signEditPassword;
+    }
+
+    public EditText getSignEditRepassword() {
+        return signEditRepassword;
+    }
+
+    public void setSignEditRepassword(EditText signEditRepassword) {
+        this.signEditRepassword = signEditRepassword;
+    }
+
+    public Button getBtnFindGame() {
+        return btnFindGame;
+    }
+
+    public void setBtnFindGame(Button btnFindGame) {
+        this.btnFindGame = btnFindGame;
+    }
+
+    public Button getBtnLogout() {
+        return btnLogout;
+    }
+
+    public void setBtnLogout(Button btnLogout) {
+        this.btnLogout = btnLogout;
+    }
+
+    public TextView getTextName() {
+        return textName;
+    }
+
+    public void setTextName(TextView textName) {
+        this.textName = textName;
+    }
+
+    public TextView getTextScore() {
+        return textScore;
+    }
+
+    public void setTextScore(TextView textScore) {
+        this.textScore = textScore;
+    }
+
+    public TextView getTextVicount() {
+        return textVicount;
+    }
+
+    public void setTextVicount(TextView textVicount) {
+        this.textVicount = textVicount;
+    }
+
+    public TextView getTextDecount() {
+        return textDecount;
+    }
+
+    public void setTextDecount(TextView textDecount) {
+        this.textDecount = textDecount;
+    }
+
+    public TextView getTextDrcount() {
+        return textDrcount;
+    }
+
+    public void setTextDrcount(TextView textDrcount) {
+        this.textDrcount = textDrcount;
+    }
+
+    public ImageView getMenuHead() {
+        return menuHead;
+    }
+
+    public void setMenuHead(ImageView menuHead) {
+        this.menuHead = menuHead;
+    }
+
+    public Handler getStartHandler() {
+        return startHandler;
+    }
+
+    public void setStartHandler(Handler startHandler) {
+        this.startHandler = startHandler;
+    }
+
+    public Dialog getChatDialog() {
+        return chatDialog;
+    }
+
+    public void setChatDialog(Dialog chatDialog) {
+        this.chatDialog = chatDialog;
+    }
+
+    public Button getBtnSend() {
+        return btnSend;
+    }
+
+    public void setBtnSend(Button btnSend) {
+        this.btnSend = btnSend;
+    }
+
+    public ScrollView getScrollMsg() {
+        return scrollMsg;
+    }
+
+    public void setScrollMsg(ScrollView scrollMsg) {
+        this.scrollMsg = scrollMsg;
+    }
+
+    public EditText getEditMsg() {
+        return editMsg;
+    }
+
+    public void setEditMsg(EditText editMsg) {
+        this.editMsg = editMsg;
+    }
+
+    public TextView getTextMsg() {
+        return textMsg;
+    }
+
+    public void setTextMsg(TextView textMsg) {
+        this.textMsg = textMsg;
+    }
+
+    public Dialog getMenuDialog() {
+        return menuDialog;
+    }
+
+    public void setMenuDialog(Dialog menuDialog) {
+        this.menuDialog = menuDialog;
+    }
+
+    public Button getBtnRollback() {
+        return btnRollback;
+    }
+
+    public void setBtnRollback(Button btnRollback) {
+        this.btnRollback = btnRollback;
+    }
+
+    public Button getBtnPeace() {
+        return btnPeace;
+    }
+
+    public void setBtnPeace(Button btnPeace) {
+        this.btnPeace = btnPeace;
+    }
+
+    public Button getBtnGiveup() {
+        return btnGiveup;
+    }
+
+    public void setBtnGiveup(Button btnGiveup) {
+        this.btnGiveup = btnGiveup;
+    }
+
+    public Dialog getExitDialog() {
+        return exitDialog;
+    }
+
+    public void setExitDialog(Dialog exitDialog) {
+        this.exitDialog = exitDialog;
+    }
+
+    public Dialog getAskPeaceDialog() {
+        return askPeaceDialog;
+    }
+
+    public void setAskPeaceDialog(Dialog askPeaceDialog) {
+        this.askPeaceDialog = askPeaceDialog;
+    }
+
+    public Dialog getAskRollbackDialog() {
+        return askRollbackDialog;
+    }
+
+    public void setAskRollbackDialog(Dialog askRollbackDialog) {
+        this.askRollbackDialog = askRollbackDialog;
+    }
+
+    public ArrayList<ChatMessage> getChatMessages() {
+        return chatMessages;
+    }
+
+    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
+        this.chatMessages = chatMessages;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
+    public void setGameView(GameView gameView) {
+        this.gameView = gameView;
+    }
+
+    public User getLocalUser() {
+        return localUser;
+    }
+
+    public void setLocalUser(User localUser) {
+        this.localUser = localUser;
+    }
+
+    public Handler getToastHandler() {
+        return toastHandler;
+    }
+
+    public void setToastHandler(Handler toastHandler) {
+        this.toastHandler = toastHandler;
     }
 }
