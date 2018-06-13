@@ -18,12 +18,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.game.chess.R;
 import com.game.chess.entity.ChatMessage;
 import com.game.chess.entity.Client;
 import com.game.chess.entity.GameView;
 import com.game.chess.entity.Img;
 import com.game.chess.entity.Mp3;
-import com.game.chess.R;
 import com.game.chess.entity.User;
 import com.game.chess.listener.MyClickListener;
 import com.game.chess.listener.MyClientListener;
@@ -451,343 +451,172 @@ public class MainActivity extends Activity {
         return thisView;
     }
 
-    public void setThisView(int thisView) {
-        this.thisView = thisView;
-    }
-
     public EditText getLoginEditName() {
         return loginEditName;
-    }
-
-    public void setLoginEditName(EditText loginEditName) {
-        this.loginEditName = loginEditName;
     }
 
     public EditText getLoginEditPassword() {
         return loginEditPassword;
     }
 
-    public void setLoginEditPassword(EditText loginEditPassword) {
-        this.loginEditPassword = loginEditPassword;
-    }
-
     public Button getLoginBtnLogin() {
         return loginBtnLogin;
-    }
-
-    public void setLoginBtnLogin(Button loginBtnLogin) {
-        this.loginBtnLogin = loginBtnLogin;
     }
 
     public Button getLoginBtnSign() {
         return loginBtnSign;
     }
 
-    public void setLoginBtnSign(Button loginBtnSign) {
-        this.loginBtnSign = loginBtnSign;
-    }
 
     public MyClickListener getMyClickListener() {
         return myClickListener;
-    }
-
-    public void setMyClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
     }
 
     public MyGameViewListener getMyGameViewListener() {
         return myGameViewListener;
     }
 
-    public void setMyGameViewListener(MyGameViewListener myGameViewListener) {
-        this.myGameViewListener = myGameViewListener;
-    }
-
     public boolean isFindding() {
         return isFindding;
-    }
-
-    public void setFindding(boolean findding) {
-        isFindding = findding;
     }
 
     public int getHeadPic() {
         return headPic;
     }
 
-    public void setHeadPic(int headPic) {
-        this.headPic = headPic;
-    }
-
     public ImageView getSignHead() {
         return signHead;
-    }
-
-    public void setSignHead(ImageView signHead) {
-        this.signHead = signHead;
     }
 
     public Button getSignBtnLastPic() {
         return signBtnLastPic;
     }
 
-    public void setSignBtnLastPic(Button signBtnLastPic) {
-        this.signBtnLastPic = signBtnLastPic;
-    }
-
     public Button getSignBtnNextPic() {
         return signBtnNextPic;
-    }
-
-    public void setSignBtnNextPic(Button signBtnNextPic) {
-        this.signBtnNextPic = signBtnNextPic;
     }
 
     public Button getSignBtnSign() {
         return signBtnSign;
     }
 
-    public void setSignBtnSign(Button signBtnSign) {
-        this.signBtnSign = signBtnSign;
-    }
-
     public Button getSignBtnBack() {
         return signBtnBack;
-    }
-
-    public void setSignBtnBack(Button signBtnBack) {
-        this.signBtnBack = signBtnBack;
     }
 
     public EditText getSignEditName() {
         return signEditName;
     }
 
-    public void setSignEditName(EditText signEditName) {
-        this.signEditName = signEditName;
-    }
-
     public EditText getSignEditPassword() {
         return signEditPassword;
-    }
-
-    public void setSignEditPassword(EditText signEditPassword) {
-        this.signEditPassword = signEditPassword;
     }
 
     public EditText getSignEditRepassword() {
         return signEditRepassword;
     }
 
-    public void setSignEditRepassword(EditText signEditRepassword) {
-        this.signEditRepassword = signEditRepassword;
-    }
-
     public Button getBtnFindGame() {
         return btnFindGame;
-    }
-
-    public void setBtnFindGame(Button btnFindGame) {
-        this.btnFindGame = btnFindGame;
     }
 
     public Button getBtnLogout() {
         return btnLogout;
     }
 
-    public void setBtnLogout(Button btnLogout) {
-        this.btnLogout = btnLogout;
-    }
-
     public TextView getTextName() {
         return textName;
-    }
-
-    public void setTextName(TextView textName) {
-        this.textName = textName;
     }
 
     public TextView getTextScore() {
         return textScore;
     }
 
-    public void setTextScore(TextView textScore) {
-        this.textScore = textScore;
-    }
-
     public TextView getTextVicount() {
         return textVicount;
-    }
-
-    public void setTextVicount(TextView textVicount) {
-        this.textVicount = textVicount;
     }
 
     public TextView getTextDecount() {
         return textDecount;
     }
 
-    public void setTextDecount(TextView textDecount) {
-        this.textDecount = textDecount;
-    }
-
     public TextView getTextDrcount() {
         return textDrcount;
-    }
-
-    public void setTextDrcount(TextView textDrcount) {
-        this.textDrcount = textDrcount;
     }
 
     public ImageView getMenuHead() {
         return menuHead;
     }
 
-    public void setMenuHead(ImageView menuHead) {
-        this.menuHead = menuHead;
-    }
-
     public Handler getStartHandler() {
         return startHandler;
-    }
-
-    public void setStartHandler(Handler startHandler) {
-        this.startHandler = startHandler;
     }
 
     public Dialog getChatDialog() {
         return chatDialog;
     }
 
-    public void setChatDialog(Dialog chatDialog) {
-        this.chatDialog = chatDialog;
-    }
-
     public Button getBtnSend() {
         return btnSend;
-    }
-
-    public void setBtnSend(Button btnSend) {
-        this.btnSend = btnSend;
     }
 
     public ScrollView getScrollMsg() {
         return scrollMsg;
     }
 
-    public void setScrollMsg(ScrollView scrollMsg) {
-        this.scrollMsg = scrollMsg;
-    }
-
     public EditText getEditMsg() {
         return editMsg;
-    }
-
-    public void setEditMsg(EditText editMsg) {
-        this.editMsg = editMsg;
     }
 
     public TextView getTextMsg() {
         return textMsg;
     }
 
-    public void setTextMsg(TextView textMsg) {
-        this.textMsg = textMsg;
-    }
-
     public Dialog getMenuDialog() {
         return menuDialog;
-    }
-
-    public void setMenuDialog(Dialog menuDialog) {
-        this.menuDialog = menuDialog;
     }
 
     public Button getBtnRollback() {
         return btnRollback;
     }
 
-    public void setBtnRollback(Button btnRollback) {
-        this.btnRollback = btnRollback;
-    }
-
     public Button getBtnPeace() {
         return btnPeace;
-    }
-
-    public void setBtnPeace(Button btnPeace) {
-        this.btnPeace = btnPeace;
     }
 
     public Button getBtnGiveup() {
         return btnGiveup;
     }
 
-    public void setBtnGiveup(Button btnGiveup) {
-        this.btnGiveup = btnGiveup;
-    }
-
     public Dialog getExitDialog() {
         return exitDialog;
-    }
-
-    public void setExitDialog(Dialog exitDialog) {
-        this.exitDialog = exitDialog;
     }
 
     public Dialog getAskPeaceDialog() {
         return askPeaceDialog;
     }
 
-    public void setAskPeaceDialog(Dialog askPeaceDialog) {
-        this.askPeaceDialog = askPeaceDialog;
-    }
-
     public Dialog getAskRollbackDialog() {
         return askRollbackDialog;
-    }
-
-    public void setAskRollbackDialog(Dialog askRollbackDialog) {
-        this.askRollbackDialog = askRollbackDialog;
     }
 
     public ArrayList<ChatMessage> getChatMessages() {
         return chatMessages;
     }
 
-    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
-    }
-
     public Client getClient() {
         return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public GameView getGameView() {
         return gameView;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
-    }
-
     public User getLocalUser() {
         return localUser;
     }
 
-    public void setLocalUser(User localUser) {
-        this.localUser = localUser;
-    }
-
     public Handler getToastHandler() {
         return toastHandler;
-    }
-
-    public void setToastHandler(Handler toastHandler) {
-        this.toastHandler = toastHandler;
     }
 }
