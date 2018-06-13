@@ -624,4 +624,180 @@ public class MainActivity extends Activity {
     public Handler getToastHandler() {
         return toastHandler;
     }
+
+    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
+        this.chatMessages = chatMessages;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setGameView(GameView gameView) {
+        this.gameView = gameView;
+    }
+
+    public void setLocalUser(User localUser) {
+        this.localUser = localUser;
+    }
+
+    public void setToastHandler(Handler toastHandler) {
+        this.toastHandler = toastHandler;
+    }
+
+    public void setThisView(int thisView) {
+        this.thisView = thisView;
+    }
+
+    public void setLoginEditName(EditText loginEditName) {
+        this.loginEditName = loginEditName;
+    }
+
+    public void setLoginEditPassword(EditText loginEditPassword) {
+        this.loginEditPassword = loginEditPassword;
+    }
+
+    public void setLoginBtnLogin(Button loginBtnLogin) {
+        this.loginBtnLogin = loginBtnLogin;
+    }
+
+    public void setLoginBtnSign(Button loginBtnSign) {
+        this.loginBtnSign = loginBtnSign;
+    }
+
+    public void setMyClickListener(MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
+    }
+
+    public void setMyGameViewListener(MyGameViewListener myGameViewListener) {
+        this.myGameViewListener = myGameViewListener;
+    }
+
+    public void setMyClientListener(MyClientListener myClientListener) {
+        this.myClientListener = myClientListener;
+    }
+
+    public void setFindding(boolean findding) {
+        isFindding = findding;
+    }
+
+    public void setHeadPic(int headPic) {
+        this.headPic = headPic;
+    }
+
+    public void setSignHead(ImageView signHead) {
+        this.signHead = signHead;
+    }
+
+    public void setSignBtnLastPic(Button signBtnLastPic) {
+        this.signBtnLastPic = signBtnLastPic;
+    }
+
+    public void setSignBtnNextPic(Button signBtnNextPic) {
+        this.signBtnNextPic = signBtnNextPic;
+    }
+
+    public void setSignBtnSign(Button signBtnSign) {
+        this.signBtnSign = signBtnSign;
+    }
+
+    public void setSignBtnBack(Button signBtnBack) {
+        this.signBtnBack = signBtnBack;
+    }
+
+    public void setSignEditName(EditText signEditName) {
+        this.signEditName = signEditName;
+    }
+
+    public void setSignEditPassword(EditText signEditPassword) {
+        this.signEditPassword = signEditPassword;
+    }
+
+    public void setSignEditRepassword(EditText signEditRepassword) {
+        this.signEditRepassword = signEditRepassword;
+    }
+
+    public void setBtnFindGame(Button btnFindGame) {
+        this.btnFindGame = btnFindGame;
+    }
+
+    public void setBtnLogout(Button btnLogout) {
+        this.btnLogout = btnLogout;
+    }
+
+    public void setTextName(TextView textName) {
+        this.textName = textName;
+    }
+
+    public void setTextScore(TextView textScore) {
+        this.textScore = textScore;
+    }
+
+    public void setTextVicount(TextView textVicount) {
+        this.textVicount = textVicount;
+    }
+
+    public void setTextDecount(TextView textDecount) {
+        this.textDecount = textDecount;
+    }
+
+    public void setTextDrcount(TextView textDrcount) {
+        this.textDrcount = textDrcount;
+    }
+
+    public void setMenuHead(ImageView menuHead) {
+        this.menuHead = menuHead;
+    }
+
+    public void setStartHandler(Handler startHandler) {
+        this.startHandler = startHandler;
+    }
+
+    public void setChatDialog(Dialog chatDialog) {
+        this.chatDialog = chatDialog;
+    }
+
+    public void setBtnSend(Button btnSend) {
+        this.btnSend = btnSend;
+    }
+
+    public void setScrollMsg(ScrollView scrollMsg) {
+        this.scrollMsg = scrollMsg;
+    }
+
+    public void setEditMsg(EditText editMsg) {
+        this.editMsg = editMsg;
+    }
+
+    public void setTextMsg(TextView textMsg) {
+        this.textMsg = textMsg;
+    }
+
+    public void setMenuDialog(Dialog menuDialog) {
+        this.menuDialog = menuDialog;
+    }
+
+    public void setBtnRollback(Button btnRollback) {
+        this.btnRollback = btnRollback;
+    }
+
+    public void setBtnPeace(Button btnPeace) {
+        this.btnPeace = btnPeace;
+    }
+
+    public void setBtnGiveup(Button btnGiveup) {
+        this.btnGiveup = btnGiveup;
+    }
+
+    public void setExitDialog(Dialog exitDialog) {
+        this.exitDialog = exitDialog;
+    }
+
+    public void setAskPeaceDialog(Dialog askPeaceDialog) {
+        this.askPeaceDialog = askPeaceDialog;
+    }
+
+    public void setAskRollbackDialog(Dialog askRollbackDialog) {
+        this.askRollbackDialog = askRollbackDialog;
+    }
 }
