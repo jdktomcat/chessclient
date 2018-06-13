@@ -31,6 +31,11 @@ import com.game.chess.listener.MyGameViewListener;
 
 import java.util.ArrayList;
 
+/**
+ * 主活动
+ *
+ * @author 汤旗
+ */
 public class MainActivity extends Activity {
     /**
      * 游戏界面
